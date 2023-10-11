@@ -1,0 +1,359 @@
+MongoDB shell version v4.2.7
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("1670cd0f-400d-45a5-97e4-20978af58ecc") }
+MongoDB server version: 4.2.7
+Server has startup warnings:
+2023-10-09T13:08:26.523+0530 I  CONTROL  [initandlisten]
+2023-10-09T13:08:26.523+0530 I  CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2023-10-09T13:08:26.523+0530 I  CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2023-10-09T13:08:26.524+0530 I  CONTROL  [initandlisten]
+---
+Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+and anyone you share the URL with. MongoDB may use this information to make product
+improvements and to suggest MongoDB products and deployment options to you.
+
+To enable free monitoring, run the following command: db.enableFreeMonitoring()
+To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+test    0.000GB
+> use test1
+switched to db test1
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+test    0.000GB
+> db
+test1
+> db.createCollection("emp")
+{ "ok" : 1 }
+> show collections
+emp
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+test    0.000GB
+test1   0.000GB
+> db.emp.find()
+> db.emp.insert({eid:100,name:"Seema",sal:20000,dept:10})
+Wrdb.emp.find()
+{ "_id" : ObjectId("65252032e4c86e7f4b0d2f35"), "eid" : 100, "name" : "Seema", "sal" : 20000, "dept" : 10 }e:"John",sal:)
+> db.emp.insertMany([{eid:200,name:"Reema",sal:25000,dept:10},{eid:300,name:"Maria",sal:40000},{eid:400,name:"John",sal:)
+> db.emp.insertMany([{eid:200,name:"Reema",sal:25000,dept:10},{eid:300,name:"Maria",sal:40000},{eid:400,name:"John",sal:)
+>
+> db.emp.insertMany([{eid:200,name:"Reema",sal:25000,dept:10},{eid:300,name:"Maria",sal:40000}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("652521a2e4c86e7f4b0d2f36"),
+                ObjectId("652521a2e4c86e7f4b0d2f37")
+        ]
+}
+> db.emp.find()
+{ "_id" : ObjectId("65252032e4c86e7f4b0d2f35"), "eid" : 100, "name" : "Seema", "sal" : 20000, "dept" : 10 }
+{ "_id" : ObjectId("652521a2e4c86e7f4b0d2f36"), "eid" : 200, "name" : "Reema", "sal" : 25000, "dept" : 10 }
+{ "_id" : ObjectId("652521a2e4c86e7f4b0d2f37"), "eid" : 300, "name" : "Maria", "sal" : 40000 }
+> db.emp.insertMany([{eid:400,name:"John",sal:50000,dept:20},{eid:500,name:"Maria",sal:60000}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("65252205e4c86e7f4b0d2f38"),
+                ObjectId("65252205e4c86e7f4b0d2f39")
+        ]
+}
+> db.emp.find()
+{ "_id" : ObjectId("65252032e4c86e7f4b0d2f35"), "eid" : 100, "name" : "Seema", "sal" : 20000, "dept" : 10 }
+{ "_id" : ObjectId("652521a2e4c86e7f4b0d2f36"), "eid" : 200, "name" : "Reema", "sal" : 25000, "dept" : 10 }
+{ "_id" : ObjectId("652521a2e4c86e7f4b0d2f37"), "eid" : 300, "name" : "Maria", "sal" : 40000 }
+{ "_id" : ObjectId("65252205e4c86e7f4b0d2f38"), "eid" : 400, "name" : "John", "sal" : 50000, "dept" : 20 }
+{ "_id" : ObjectId("65252205e4c86e7f4b0d2f39"), "eid" : 500, "name" : "Maria", "sal" : 60000 }
+> db.emp.find.pretty()
+2023-10-10T15:39:51.083+0530 E  QUERY    [js] uncaught exception: TypeError: db.emp.find.pretty is not a function :
+@(shell):1:1
+> db.emp.find().pretty
+function() {
+    this._prettyShell = true;
+    return this;
+}
+> db.emp.find().pretty()
+{
+        "_id" : ObjectId("65252032e4c86e7f4b0d2f35"),
+        "eid" : 100,
+        "name" : "Seema",
+        "sal" : 20000,
+        "dept" : 10
+}
+{
+        "_id" : ObjectId("652521a2e4c86e7f4b0d2f36"),
+        "eid" : 200,
+        "name" : "Reema",
+        "sal" : 25000,
+        "dept" : 10
+}
+{
+        "_id" : ObjectId("652521a2e4c86e7f4b0d2f37"),
+        "eid" : 300,
+        "name" : "Maria",
+        "sal" : 40000
+}
+{
+        "_id" : ObjectId("65252205e4c86e7f4b0d2f38"),
+        "eid" : 400,
+        "name" : "John",
+        "sal" : 50000,
+        "dept" : 20
+}
+{
+        "_id" : ObjectId("65252205e4c86e7f4b0d2f39"),
+        "eid" : 500,
+        "name" : "Maria",
+        "sal" : 60000
+}
+> db.emp.find()
+{ "_id" : ObjectId("65252032e4c86e7f4b0d2f35"), "eid" : 100, "name" : "Seema", "sal" : 20000, "dept" : 10 }
+{ "_id" : ObjectId("652521a2e4c86e7f4b0d2f36"), "eid" : 200, "name" : "Reema", "sal" : 25000, "dept" : 10 }
+{ "_id" : ObjectId("652521a2e4c86e7f4b0d2f37"), "eid" : 300, "name" : "Maria", "sal" : 40000 }
+{ "_id" : ObjectId("65252205e4c86e7f4b0d2f38"), "eid" : 400, "name" : "John", "sal" : 50000, "dept" : 20 }
+{ "_id" : ObjectId("65252205e4c86e7f4b0d2f39"), "eid" : 500, "name" : "Maria", "sal" : 60000 }
+> db.emp.update({eid:500,name:"Maria",sal:60000},{$set:{eid:500,name:"Maria",sal:60000,dept:30}}})
+2023-10-10T15:44:50.185+0530 E  QUERY    [js] uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:94
+> db.emp.update({eid:500},{$set:{eid:500,dept:30}}})
+2023-10-10T15:46:11.225+0530 E  QUERY    [js] uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:48
+> db.emp.update({eid:500},{$set:{eid:500,dept:30}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.emp.find()
+{ "_id" : ObjectId("65252032e4c86e7f4b0d2f35"), "eid" : 100, "name" : "Seema", "sal" : 20000, "dept" : 10 }
+{ "_id" : ObjectId("652521a2e4c86e7f4b0d2f36"), "eid" : 200, "name" : "Reema", "sal" : 25000, "dept" : 10 }
+{ "_id" : ObjectId("652521a2e4c86e7f4b0d2f37"), "eid" : 300, "name" : "Maria", "sal" : 40000 }
+{ "_id" : ObjectId("65252205e4c86e7f4b0d2f38"), "eid" : 400, "name" : "John", "sal" : 50000, "dept" : 20 }
+{ "_id" : ObjectId("65252205e4c86e7f4b0d2f39"), "eid" : 500, "name" : "Maria", "sal" : 60000, "dept" : 30 }
+> db.emp.update({eid:300,sal:40000},{$set:{eid:500,sal:45000}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.emp.find()
+{ "_id" : ObjectId("65252032e4c86e7f4b0d2f35"), "eid" : 100, "name" : "Seema", "sal" : 20000, "dept" : 10 }
+{ "_id" : ObjectId("652521a2e4c86e7f4b0d2f36"), "eid" : 200, "name" : "Reema", "sal" : 25000, "dept" : 10 }
+{ "_id" : ObjectId("652521a2e4c86e7f4b0d2f37"), "eid" : 500, "name" : "Maria", "sal" : 45000 }
+{ "_id" : ObjectId("65252205e4c86e7f4b0d2f38"), "eid" : 400, "name" : "John", "sal" : 50000, "dept" : 20 }
+{ "_id" : ObjectId("65252205e4c86e7f4b0d2f39"), "eid" : 500, "name" : "Maria", "sal" : 60000, "dept" : 30 }
+> db.emp.update({eid:300,sal:40000},{$set:{eid:300,sal:45000}})
+WriteResult({ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 })
+> db.emp.find()
+{ "_id" : ObjectId("65252032e4c86e7f4b0d2f35"), "eid" : 100, "name" : "Seema", "sal" : 20000, "dept" : 10 }
+{ "_id" : ObjectId("652521a2e4c86e7f4b0d2f36"), "eid" : 200, "name" : "Reema", "sal" : 25000, "dept" : 10 }
+{ "_id" : ObjectId("652521a2e4c86e7f4b0d2f37"), "eid" : 500, "name" : "Maria", "sal" : 45000 }
+{ "_id" : ObjectId("65252205e4c86e7f4b0d2f38"), "eid" : 400, "name" : "John", "sal" : 50000, "dept" : 20 }
+{ "_id" : ObjectId("65252205e4c86e7f4b0d2f39"), "eid" : 500, "name" : "Maria", "sal" : 60000, "dept" : 30 }
+> db.emp.update({eid:500,sal:40000},{$set:{eid:300,sal:45000}})
+WriteResult({ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 })
+> db.emp.find()
+{ "_id" : ObjectId("65252032e4c86e7f4b0d2f35"), "eid" : 100, "name" : "Seema", "sal" : 20000, "dept" : 10 }
+{ "_id" : ObjectId("652521a2e4c86e7f4b0d2f36"), "eid" : 200, "name" : "Reema", "sal" : 25000, "dept" : 10 }
+{ "_id" : ObjectId("652521a2e4c86e7f4b0d2f37"), "eid" : 500, "name" : "Maria", "sal" : 45000 }
+{ "_id" : ObjectId("65252205e4c86e7f4b0d2f38"), "eid" : 400, "name" : "John", "sal" : 50000, "dept" : 20 }
+{ "_id" : ObjectId("65252205e4c86e7f4b0d2f39"), "eid" : 500, "name" : "Maria", "sal" : 60000, "dept" : 30 }
+> db.emp.update({eid:500,sal:40000},{$set:{eid:300,sal:45000}})
+WriteResult({ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 })
+> db.emp.update({sal:40000,eid:500},{$set:{sal:45000,eid:300}})
+WriteResult({ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 })
+> db.emp.update({name:"Maria",eid:500},{$set:{name:"Maria",eid:300}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.emp.find()
+{ "_id" : ObjectId("65252032e4c86e7f4b0d2f35"), "eid" : 100, "name" : "Seema", "sal" : 20000, "dept" : 10 }
+{ "_id" : ObjectId("652521a2e4c86e7f4b0d2f36"), "eid" : 200, "name" : "Reema", "sal" : 25000, "dept" : 10 }
+{ "_id" : ObjectId("652521a2e4c86e7f4b0d2f37"), "eid" : 300, "name" : "Maria", "sal" : 45000 }
+{ "_id" : ObjectId("65252205e4c86e7f4b0d2f38"), "eid" : 400, "name" : "John", "sal" : 50000, "dept" : 20 }
+{ "_id" : ObjectId("65252205e4c86e7f4b0d2f39"), "eid" : 500, "name" : "Maria", "sal" : 60000, "dept" : 30 }
+> db.emp.remove({eid:300})
+WriteResult({ "nRemoved" : 1 })
+> db.emp.find()
+{ "_id" : ObjectId("65252032e4c86e7f4b0d2f35"), "eid" : 100, "name" : "Seema", "sal" : 20000, "dept" : 10 }
+{ "_id" : ObjectId("652521a2e4c86e7f4b0d2f36"), "eid" : 200, "name" : "Reema", "sal" : 25000, "dept" : 10 }
+{ "_id" : ObjectId("65252205e4c86e7f4b0d2f38"), "eid" : 400, "name" : "John", "sal" : 50000, "dept" : 20 }
+{ "_id" : ObjectId("65252205e4c86e7f4b0d2f39"), "eid" : 500, "name" : "Maria", "sal" : 60000, "dept" : 30 }
+> db.emp.insert({eid:300,name:"Maria",sal:40000})
+WriteResult({ "nInserted" : 1 })
+> db.emp.find()
+{ "_id" : ObjectId("65252032e4c86e7f4b0d2f35"), "eid" : 100, "name" : "Seema", "sal" : 20000, "dept" : 10 }
+{ "_id" : ObjectId("652521a2e4c86e7f4b0d2f36"), "eid" : 200, "name" : "Reema", "sal" : 25000, "dept" : 10 }
+{ "_id" : ObjectId("65252205e4c86e7f4b0d2f38"), "eid" : 400, "name" : "John", "sal" : 50000, "dept" : 20 }
+{ "_id" : ObjectId("65252205e4c86e7f4b0d2f39"), "eid" : 500, "name" : "Maria", "sal" : 60000, "dept" : 30 }
+{ db.emp.insertMany([{eid:200,name:"Reema",sal:25000,dept:10},{eid:300,name:"Maria",sal:40000},{eid:400,name:"John",sal:)db.emp.insertMany([{eid:200,name:"Reema",sal:25000,dept:10},{eid:300,name:"Maria",sal:40000},{eid:400,name:"John",sal:):)
+...
+...
+> db.emp.aggregate([{$group:{_id:"eid","total":{$sum:1}}}])
+{ "_id" : "eid", "total" : 5 }
+> db.emp.aggregate([{$group:{_id:"name","total":{$sum:1}}}])
+{ "_id" : "name", "total" : 5 }
+> db.emp.aggregate([{$group:{_id:"$dept","totalsal":{$sum:"$sal"}}}])
+{ "_id" : 10, "totalsal" : 45000 }
+{ "_id" : null, "totalsal" : 40000 }
+{ "_id" : 20, "totalsal" : 50000 }
+{ "_id" : 30, "totalsal" : 60000 }
+> db.emp.aggregate([{$group:{_id:"$dept","totalsal":{$max:"$sal"}}}])
+{ "_id" : 20, "totalsal" : 50000 }
+{ "_id" : 10, "totalsal" : 25000 }
+{ "_id" : null, "totalsal" : 40000 }
+{ "_id" : 30, "totalsal" : 60000 }
+> db.emp.aggregate([{$group:{_id:"$dept","totalsal":{$min:"$sal"}}}])
+{ "_id" : 10, "totalsal" : 20000 }
+{ "_id" : null, "totalsal" : 40000 }
+{ "_id" : 20, "totalsal" : 50000 }
+{ "_id" : 30, "totalsal" : 60000 }
+> db.emp.aggregate([{$group:{_id:"$dept","totalsal":{$avg:"$sal"}}}])
+{ "_id" : 20, "totalsal" : 50000 }
+{ "_id" : 10, "totalsal" : 22500 }
+{ "_id" : null, "totalsal" : 40000 }
+{ "_id" : 30, "totalsal" : 60000 }
+> db.emp.aggregate([{$group:{_id:"$dept","avgsal":{$avg:"$sal"}}},{$match:{"avgsal":{$gt:20000}}}])
+{ "_id" : 10, "avgsal" : 22500 }
+{ "_id" : null, "avgsal" : 40000 }
+{ "_id" : 20, "avgsal" : 50000 }
+{ "_id" : 30, "avgsal" : 60000 }
+> db.emp.aggregate([{$group:{_id:"$dept","avgsal":{$avg:"$sal"}}},{$match:{"avgsal":{$gt:40000}}}])
+{ "_id" : 20, "avgsal" : 50000 }
+{ "_id" : 30, "avgsal" : 60000 }
+> db.emp.aggregate([{$group:{_id:"$dept","avgsal":{$avg:"$sal"}}},{$match:{"avgsal":{$lt:40000}}}])
+{ "_id" : 10, "avgsal" : 22500 }
+> db.emp.aggregate([{$group:{_id:"dept","maxsal":{$max:"$sal"}}}])
+{ "_id" : "dept", "maxsal" : 60000 }
+> db.emp.aggregate([{$group:{_id:"$dept","maxsal":{$max:"$sal"}}}])
+{ "_id" : 20, "maxsal" : 50000 }
+{ "_id" : 10, "maxsal" : 25000 }
+{ "_id" : null, "maxsal" : 40000 }
+{ "_id" : 30, "maxsal" : 60000 }
+> db.emp.indexes.find().pretty()
+> db.emp.indexes.find()
+> db.emp.getIndexes
+function(filter) {
+    var res = this.runCommand("listIndexes", filter);
+
+    if (!res.ok) {
+        if (res.code == ErrorCodes.NamespaceNotFound) {
+            // For compatibility, return []
+            return [];
+        }
+
+        throw _getErrorWithCode(res, "listIndexes failed: " + tojson(res));
+    }
+
+    return new DBCommandCursor(this._db, res).toArray();
+}
+> db.emp.getIndexes()
+[
+        {
+                "v" : 2,
+                "key" : {
+                        "_id" : 1
+                },
+                "name" : "_id_",
+                "ns" : "test1.emp"
+        }
+]
+> db.emp.ensureIndex({"name":1},{"name":"nameindex"})
+{
+        "createdCollectionAutomatically" : false,
+        "numIndexesBefore" : 1,
+        "numIndexesAfter" : 2,
+        "ok" : 1
+}
+> db.emp.getIndexes()
+[
+        {
+                "v" : 2,
+                "key" : {
+                        "_id" : 1
+                },
+                "name" : "_id_",
+                "ns" : "test1.emp"
+        },
+        {
+                "v" : 2,
+                "key" : {
+                        "name" : 1
+                },
+                "name" : "nameindex",
+                "ns" : "test1.emp"
+        }
+]
+> db.emp.ensureIndex({eid:1,dept:1})
+{
+        "createdCollectionAutomatically" : false,
+        "numIndexesBefore" : 2,
+        "numIndexesAfter" : 3,
+        "ok" : 1
+}
+> db.emp.getIndexes()
+[
+        {
+                "v" : 2,
+                "key" : {
+                        "_id" : 1
+                },
+                "name" : "_id_",
+                "ns" : "test1.emp"
+        },
+        {
+                "v" : 2,
+                "key" : {
+                        "name" : 1
+                },
+                "name" : "nameindex",
+                "ns" : "test1.emp"
+        },
+        {
+                "v" : 2,
+                "key" : {
+                        "eid" : 1,
+                        "dept" : 1
+                },
+                "name" : "eid_1_dept_1",
+                "ns" : "test1.emp"
+        }
+]
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
